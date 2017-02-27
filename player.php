@@ -24,15 +24,6 @@ class player
      * @param $clubCountry
      * @param $playerId
      */
-//     function __construct($name, $age, $nationality, $club, $clubCountry, $playerId)
-//    {
-//        $this->setName($name);
-//        $this->setAge($age);
-//        $this->setNationality($nationality);
-//        $this->setClub($club);
-//        $this->setClubCountry($clubCountry);
-//        $this->playerId = $playerId;
-//    }
     function __construct($name,$age,$nationality,$clubAndCountry,$playerId){
         $this->setName($name);
         $this->setAge($age);
@@ -40,12 +31,6 @@ class player
         $this->setClub($clubAndCountry);
         $this->setClubCountry($clubAndCountry);
         $this->setPlayerId($playerId);
-//        $this->name = $name;
-//        $this->age=$age;
-//        $this->nationality=$nationality;
-//        $this->club= $clubAndCountry;
-//        $this->clubCountry = $clubAndCountry;
-//        $this->playerId= $playerId;
     }
 
     //will send in the player and it will take their html and extract that specific information
@@ -54,7 +39,6 @@ class player
      */
 
 
-    //  th tag while the others dont
     public function getName()
     {
         return $this->name;
@@ -66,11 +50,12 @@ class player
     public function setName($playerName)
     {
 
-        //ALSO CHECK FOR [] Edder Delgado[97] Honduras
-
         $name = strip_tags($playerName);
         if(strpos($name,"(c)")>0){
             $name = substr($name,0,strpos($name,"(c)")-1);
+        }
+        if(strpos($name,"[")>0){
+            $name = substr($name,0,strpos($name,"["));
         }
 
         $this->name = $name;
@@ -80,7 +65,6 @@ class player
      * @return mixed
      */
 
-    //aged
     public function getAge()
     {
         return $this->age;
@@ -103,7 +87,6 @@ class player
      * @return mixed
      */
 
-    //will set up a list of countries involved and when added 23 will switch to the next country s
     public function getNationality()
     {
         return $this->nationality;
@@ -114,7 +97,6 @@ class player
      */
     public function setNationality($nationality)
     {
-
 
         //an array of all the countries, force the array to be size of 32 ( can change depending on the world cup/euro size) loop through
         //<li class="toclevel-2 tocsection-2"><a href="#Brazil"><span class="tocnumber">1.1</span> <span class="toctext">Brazil</span></a></li>
@@ -127,7 +109,6 @@ class player
      * @return mixed
      */
 
-    //get last title of player
     public function getClub()
     {
         return $this->club;
