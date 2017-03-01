@@ -7,6 +7,29 @@ $html = file_get_contents('https://en.wikipedia.org/wiki/2014_FIFA_World_Cup_squ
 
 $players =array();
 
+
+//regex for country /<li class="toclevel-(.*?)<\/li>/g
+//preg_match('/<li class="toclevel-(.*?)><\/li>/g',$html,$countries);
+preg_match_all('/<span class="toctext">(.*?)<\/span>/s',$html,$findCountries);
+
+
+$countries = array();
+
+for ($i=0;$i<sizeof($findCountries[0]);$i++){
+    if(sizeof($countries)>31) {
+        break;
+    }else if(strpos($findCountries[0][$i],"Group")<1){
+        array_push($countries,$findCountries[0][$i]);
+    }
+}
+
+
+
+
+
+
+
+
 $playerId=0;
 for ($i=0;$i<=sizeof($matches[0]);$i++){
 
@@ -34,7 +57,7 @@ for ($i=0;$i<=sizeof($matches[0]);$i++){
     }
 }
 
-foreach ($players as $player){
-    echo "My name is " .  $player->getName() . " I am " . $player->getAge() . " years old. I live in " . $player->getClubCountry() . " and I play for " . $player->getClub() . " and my ID is: " . $player->getPlayerId() ."<br>";
-
-}
+//foreach ($players as $player){
+//    echo "My name is " .  $player->getName() . " I am " . $player->getAge() . " years old. I live in " . $player->getClubCountry() . " and I play for " . $player->getClub() . " and my ID is: " . $player->getPlayerId() ."<br>";
+//
+//}
